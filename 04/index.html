@@ -1,0 +1,74 @@
+<div id="root">
+    
+    {{ kittifyName }}
+    <br>
+    <input v-model='newCat' v-on:keyup.enter='addKitty'>
+    <!--<button click='addKitty'>-->
+    <button @click='addKitty'>
+        +add
+    </button>
+    <ul>
+        <li v-for='cat in cats'>{{ cat.name | capitalize }}</li>
+    </ul>
+    <cat-list :cats='cats' />
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+    Vue.component('cat-list', {
+        props: ['cats'],
+        template: `
+            <ul>
+                <li v-for="cat in cats">{{ cat.name }}</li>
+            </ul>
+        `
+    })
+
+    app = new Vue({
+        el: '#root',
+        component: [
+            'cat-list'
+        ],
+        data: {
+            cats: [
+            { name : 'kitcat'}, 
+            { name : 'fish'}, 
+            { name : 'henry'} 
+            /*'kitkat',
+            'fish',
+            'henry',
+            'bosco',
+            'melanthios'*/
+        ],
+        newCat: ''
+    }, 
+        methods: {
+            addKitty: function(){
+                return this.cats.push({name: this.newCat})
+                this.newCat = ''
+            }
+        },
+
+        computed: {
+            kittifyName: function(){
+                if(this.newCat.length > 1){
+                    return this.newCat + 'y'
+                }
+            }
+        },
+        filters: {
+            capitalize: function(value){
+                return value.toUpperCase()
+            },
+            kittify: function(value){
+                return value + 'y';
+            }
+        }
+
+
+
+    })
+
+</script>
