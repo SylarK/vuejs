@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VueJS - Transition and Animation</title>
+    <script src="js/vue.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <body>
+    <!-- CSS -->
+    <style>
+      .fade-enter-active,
+      .fade-leave-active {
+        transition: opacity 2s;
+      }
+      .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+        opacity: 0;
+      }
+      .shiftx-enter-active {
+        animation: shift-in 2s;
+      }
+      .shiftx-leave-active {
+        animation: shift-in 2s reverse;
+      }
+      @keyframes shift-in {
+        0% {
+          transform: rotateX(0deg);
+        }
+        25% {
+          transform: rotateX(90deg);
+        }
+        50% {
+          transform: rotateX(120deg);
+        }
+        75% {
+          transform: rotateX(180deg);
+        }
+        100% {
+          transform: rotateX(360deg);
+        }
+      }
+    </style>
+    <!-- HTML -->
+    <div id="databinding">
+      <button v-on:click="show = !show">Click Me</button>
+      <transition name="fade">
+        <p v-show="show" v-bind:style="styleobj">Animation Example</p>
+      </transition>
+    </div>
+    <div id="databinding2">
+      <button v-on:click="show = !show">Click Me</button>
+      <transition name="shiftx">
+        <p v-show="show">
+          <img src="img/gopher-jedi.png" style="width: 350px; height: 400px" />
+        </p>
+      </transition>
+    </div>
+    <hr />
+    <div id="animate" style="text-align: center">
+      <transition
+        appear
+        appear-class="custom-appear-class"
+        appear-active-class="animated bounceIn"
+      >
+        <h1>BounceIn - Animation Example</h1>
+      </transition>
+      <transition
+        appear
+        appear-class="custom-appear-class"
+        appear-active-class="animated swing"
+      >
+        <h1>Swing - Animation Example</h1>
+      </transition>
+      <transition
+        appear
+        appear-class="custom-appear-class"
+        appear-active-class="animated rubberBand"
+      >
+        <h1>RubberBand - Animation Example</h1>
+      </transition>
+    </div>
+    <!-- SCRIPT -->
+    <script type="text/javascript">
+      var vm = new Vue({
+        el: '#databinding',
+        data: {
+          show: true,
+          styleobj: {
+            fontSize: '30px',
+            color: 'red',
+          },
+        },
+        methods: {},
+      })
+      var vm2 = new Vue({
+        el: '#databinding2',
+        data: {
+          show: true,
+        },
+        methods: {},
+      }),
+      var vm =  new Vue({
+            el: '#animate',
+            data: {
+               show: true
+            }
+         });
+    </script>
+  </body>
+</html>
+
+<!--
+  v-enter − This class is called initially before the element is updated/added. Its the starting state.
+
+  v-enter-active − This class is used to define the delay, duration, and easing curve for entering in the transition phase. This is the active state for entire and the class is available during the entire entering phase.
+
+  v-leave − Added when the leaving transition is triggered, removed.
+
+  v-leave-active − Applied during the leaving phase. It is removed when the transition is done. This class is used to apply the delay, duration, and easing curve during the leaving phase.
+-->
