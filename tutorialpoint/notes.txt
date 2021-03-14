@@ -1,0 +1,15 @@
+## Using CLI command
+npm install --global vue-cli
+vue init webpack myproject
+cd myproject
+npm install
+npm run dev
+
+## Using npm
+npm  install vue
+
+##Start
+To start with VueJS, we need to create the instance of Vue, which is called the root Vue Instance.
+var app = new Vue({
+  //options
+})

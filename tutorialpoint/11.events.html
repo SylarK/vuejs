@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue JS Events</title>
+    <script type="text/javascript" src="js/vue.js"></script>
+  </head>
+  <body>
+    <div id="databinding">
+      <button v-on:click="displaynumbers">Click Me</button>
+      <!--<button @click="displaynumbers">Click Me</button>-->
+      <h2>Add Number 100 + 200 = {{ total }}</h2>
+      <div
+        v-bind:style="styleobj"
+        @mouseover="changebgcolor"
+        @mouseout="originalcolor"
+        @click="othercolor"
+      ></div>
+    </div>
+    <hr />
+
+    <div id="databinding2">
+      <p>Once</p>
+      <button v-on:click.once="buttonclickedonce" v-bind:style="styleobj">
+        Click Once
+      </button>
+      Output:{{clicknum}}
+      <br /><br />
+      <button v-on:click="buttonclicked" v-bind:style="styleobj">
+        Click Me
+      </button>
+      Output:{{clicknum1}}
+      <br />
+      <p>Prevent</p>
+      <a
+        href="http://www.google.com"
+        v-on:click="clickme"
+        target="_blank"
+        v-bind:style="styleobj2"
+        >Click Me</a
+      >
+      <br />
+      <p>Key Modifiers</p>
+      <input
+        type="text"
+        v-on:keyup.enter="showinputvalue"
+        v-bind:style="styleobj3"
+        placeholder="Enter your name"
+      />
+      <h3>{{namemodifier}}</h3>
+    </div>
+
+    <script type="text/javascript">
+      var vm = new Vue({
+        el: '#databinding',
+        data: {
+          num1: 100,
+          num2: 200,
+          total: '',
+          styleobj: {
+            width: '100px',
+            height: '100px',
+            backgroundColor: 'red',
+          },
+        },
+        methods: {
+          displaynumbers: function (event) {
+            console.log(event)
+            return (this.total = this.num1 + this.num2)
+          },
+          changebgcolor: function () {
+            this.styleobj.backgroundColor = 'green'
+          },
+          originalcolor: function () {
+            this.styleobj.backgroundColor = 'red'
+          },
+          othercolor: function () {
+            this.styleobj.backgroundColor = 'blue'
+          },
+        },
+      })
+
+      var vm2 = new Vue({
+        el: '#databinding2',
+        data: {
+          clicknum: 0,
+          clicknum1: 0,
+          namemodifier: '',
+          styleobj: {
+            backgroundColor: '#2196F3!important',
+            cursor: 'pointer',
+            padding: '8px 16px',
+            verticalAlign: 'middle',
+          },
+          styleobj2: {
+            color: '#4CAF50',
+            marginleft: '20px',
+            fontSize: '30px',
+          },
+          styleobj3: {
+            width: '30%',
+            padding: '12px 20px',
+            margin: '8px 0',
+            boxSizing: 'border-box',
+          },
+        },
+        methods: {
+          buttonclickedonce: function () {
+            this.clicknum++
+          },
+          buttonclicked: function () {
+            this.clicknum1++
+          },
+          clickme: function () {
+            alert('Anchor tag is clicked')
+          },
+          showinputvalue: function (event) {
+            this.namemodifier = event.target.value
+          },
+        },
+      })
+    </script>
+  </body>
+</html>
