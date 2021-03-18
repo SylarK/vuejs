@@ -22,6 +22,7 @@
           class="media"
           v-for="submission in sortedSubmissions"
           v-bind:key="submission.id"
+          v-bind:class="{'blue-border': submission.votes >= 20}"
         >
           <figure class="media-left">
             <img
