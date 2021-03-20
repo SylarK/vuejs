@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import products from '../products.json';
+import products from '../products';
 
 export const Store = new Vue({
   data() {

@@ -8,9 +8,11 @@ import 'element-ui/lib/theme-chalk/index.css';
 //Components
 import NavBar from './components/Navbar.vue';
 import ProductList from './components/ProductList.vue';
+import ShoppingCart from './components/ShoppingCart.vue';
 
 Vue.component('NavBar', NavBar);
 Vue.component('ProductList', ProductList);
+Vue.component('ShoppingCart', ShoppingCart);
 
 Vue.use(Element, { locale });
 

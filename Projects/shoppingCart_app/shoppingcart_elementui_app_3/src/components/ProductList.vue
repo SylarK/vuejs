@@ -1,13 +1,13 @@
 <template>
   <el-row>
-    <el-col :span="12" v-for="product in products" v-bind:key="product.sku">
+    <el-col :span="12" v-for="product in products" :key="product.sku">
       <el-card>
         <img :src="product.images[0]" class="image" />
         <span>{{ product.name }}</span>
-        <span>{{ product.price | currency }}</span>
+        <span>{{ product.price }}</span>
         <div class="bottom clearfix">
-          <el-button type="info" @click="addToCart(produce)"
-            >Add to Cart</el-button
+          <el-button type="info" @click="addToCart(product)"
+            >Add to cart</el-button
           >
         </div>
       </el-card>
