@@ -10,6 +10,7 @@ import NavBar from './components/Navbar.vue';
 import ProductList from './components/ProductList.vue';
 
 Vue.component('NavBar', NavBar);
+Vue.component('ProductList', ProductList);
 
 Vue.use(Element, { locale });
 
