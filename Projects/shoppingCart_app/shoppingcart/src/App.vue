@@ -11,6 +11,14 @@
   <router-view />
 </template>
 
+<script>
+export default {
+  mounter() {
+    this.$store.commit("updateCartFromLocalStorage");
+  },
+};
+</script>
+
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

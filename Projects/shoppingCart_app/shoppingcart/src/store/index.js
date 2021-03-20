@@ -15,6 +15,12 @@ export default createStore({
       if (item) return item.quantity;
       else return null;
     },
+    cartItems: (state) => {
+      return state.cart;
+    },
+    cartTotal: (state) => {
+      return state.cart.reduce((a, b) => a + b.price * b.quantity, 0);
+    },
   },
   mutations: {
     addToCart(state, product) {
@@ -40,6 +46,13 @@ export default createStore({
       }
 
       updateLocalStorage(state.cart);
+    },
+
+    updateCartFromLocalStorage(state) {
+      const cart = localStorage.getItem('cart');
+      if (cart) {
+        state.cart = JSON.parse(cart);
+      }
     },
   },
   actions: {},
