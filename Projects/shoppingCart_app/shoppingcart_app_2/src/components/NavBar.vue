@@ -1,5 +1,5 @@
 <template>
   <div>
-    TESTE
+    NAVBAR
   </div>
 </template>

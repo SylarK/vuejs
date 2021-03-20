@@ -1,5 +1,33 @@
 <template>
   <div>
-    <h2>Template Products</h2>
+    <h1 class="title">All Products</h1>
+    <p>{{ length }} products</p>
+    <table class="table is-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="product in products" :key="product.id">
+          <td>{{ product.name }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
+<script>
+import { mapGetters, mapActions } from 'vuex';
+
+export default {
+  name: 'App',
+  computed: mapGetters({
+    products: 'allProducts',
+    length: 'getNumbersOfProducts',
+  }),
+  methods: mapActions(['addToCart']),
+};
+</script>
