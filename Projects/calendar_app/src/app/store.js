@@ -17,4 +17,19 @@ export const store = {
     const activeDay = this.getActiveDay();
     activeDay.events.push({ details: eventDetails, edit: false });
   },
+  editEvent(dayId, eventDetails) {
+    this.resetEditOfAllEvents();
+    const dayObj = this.state.data.find((day) => day.id === dayId);
+    const eventObj = dayObj.events.find(
+      (event) => event.details === eventDetails
+    );
+    eventObj.edit = true;
+  },
+  resetEditOfAllEvents() {
+    this.state.data.map((dayObj) => {
+      dayObj.events.map((event) => {
+        event.edit = false;
+      });
+    });
+  },
 };
