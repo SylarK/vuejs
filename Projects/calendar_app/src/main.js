@@ -1,8 +1,10 @@
 import { createApp } from 'vue';
-import App from './app/App.vue';
+//import App from './app/App.vue';
+import NumberDisplay from './app/examples/NumberDisplay.vue';
 //import App from './app/MyComponent.vue';
 
-createApp(App).mount('#app');
+//createApp(App).mount('#app');
+createApp(NumberDisplay).mount('#app');
 
 /*
 Important - For study :
