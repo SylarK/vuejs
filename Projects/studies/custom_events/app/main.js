@@ -1,3 +1,5 @@
+const emitter = mitt();
+
 const inputComponent = {
   template: `
       <input 
@@ -9,6 +11,7 @@ const inputComponent = {
       />`,
   props: ['placeholder'],
   emits: ['add-note'],
+
   data() {
     return {
       input: '',
@@ -16,12 +19,28 @@ const inputComponent = {
   },
   methods: {
     monitorEnterKey() {
-      this.$emit('add-note', {
+      emitter.emit('add-note', {
         note: this.input,
         timestamp: new Date().toLocaleString(),
       });
       this.input = '';
     },
+  },
+};
+
+const noteCountComponent = {
+  template: `
+      <div class="note-count">
+        Note count: <strong>{{ noteCount }}</strong>
+      </div>
+      `,
+  data() {
+    return {
+      noteCount: 0,
+    };
+  },
+  created() {
+    emitter.on('add-note', (event) => this.noteCount++);
   },
 };
 
@@ -35,12 +54,16 @@ const app = {
   },
   components: {
     'input-component': inputComponent,
+    'note-cout-component': noteCountComponent,
   },
   methods: {
     addNote(event) {
       this.notes.push(event.note);
       this.timestamps.push(event.timestamp);
     },
+  },
+  created() {
+    emitter.on('add-note', (event) => this.addNote(event));
   },
 };
 

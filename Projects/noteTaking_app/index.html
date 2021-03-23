@@ -19,7 +19,7 @@
           </div>
           <div class="column has-text-centered">
             <strong>Timestamp</strong>
-            <div v-for="timestamp in timestamps" class="timestamp">
+            <div v-for="timestamp in timestamps" class="timestamps">
               {{ timestamp }}
             </div>
           </div>
@@ -30,18 +30,8 @@
     </div>
 
     <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/vuex@next"></script>
     <script src="https://unpkg.com/mitt/dist/mitt.umd.js"></script>
     <script src="./main.js"></script>
   </body>
 </html>
-
-<!-- 
-Sumarry 
-On input-component, the keyup.enter event listener is triggered when the ‘Enter’ key is
-released and calls monitorEnterKey().
-• The monitorEnterKey() method emits the custom add-note event and clears the input field.
-• The add-note event listener declared on <input-component></input-component> listens for the
-event trigger and calls the root instance addNote() method.
-• The addNote() method then updates the instance’s data property which reactively rerenders
-the view
--->
