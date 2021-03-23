@@ -31,8 +31,7 @@ const store = Vuex.createStore({
   actions,
   getters,
 });
-
-const emitter = mitt();
+//store.dispatch('nameOfAction', payload)
 
 const inputComponent = {
   template: `<input 
@@ -48,10 +47,8 @@ const inputComponent = {
   },
   methods: {
     monitorEnterKey() {
-      emitter.emit('add-note', {
-        note: this.input,
-        timestamp: new Date().toLocaleString(),
-      });
+      this.$store.dispatch('addNote', this.input);
+      this.$store.dispatch('addTimeStamp', new Date().toLocaleString());
       this.input = '';
     },
   },
@@ -61,19 +58,30 @@ const noteCountComponent = {
   template: `<div class="note-count">
       Note count: <strong>{{ noteCount }}</strong>
     </div>`,
-  data() {
-    return {
-      noteCount: 0,
-    };
-  },
-  created() {
-    emitter.on('add-note', (event) => this.noteCount++);
+  computed: {
+    noteCount() {
+      return this.$store.getters.getNoteCount;
+    },
   },
 };
 
 const app = Vue.createApp({
+  data() {
+    return {
+      placeholder: 'Type your notes here',
+    };
+  },
+  computed: {
+    notes() {
+      return this.$store.getters.getNotes;
+    },
+    timestamps() {
+      return this.$store.getters.getTimestamps;
+    },
+  },
   components: {
     'input-component': inputComponent,
+    'note-count-component': noteCountComponent,
   },
 });
 
