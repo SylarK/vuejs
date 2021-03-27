@@ -1,0 +1,10 @@
+Changes: 
+
+1. Modify data() to keep track of persistence status. Basically, we’ll want to know if the app is
+currently loading, is currently saving, or encountered an error during either operation.
+2. Make a request using our API client to get any previously persisted data and load it into our
+data().
+3. Update our submitForm() event handler to trigger a save.
+4. Change our component template so that the Submit button reflects the current save status and
+prevents the user from performing an unwanted action like a double-save, as well as display a
+loading indicator in the items list when data is still being fetched.
