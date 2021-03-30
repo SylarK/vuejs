@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 //import the components that need to be mapped
 import CartList from '../components/cart/CartList.vue';
-import ProductList from '../components/cart/ProductList.vue';
+import ProductList from '../components/product/ProductList.vue';
 import NotFound from '../components/NotFound.vue';
 
 const router = createRouter({
@@ -24,8 +24,8 @@ const router = createRouter({
     },
     {
       path: '/:pathMatch(.*)*',
-      component: NotFound
-    }
+      component: NotFound,
+    },
   ],
 });
 

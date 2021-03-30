@@ -1,8 +1,20 @@
 <template>
   <div id="app">
+    <div class="navigation-buttons">
+      <div class="is-pulled-right">
+        <router-link to="/products" class="button">
+          <i class="fa fa-user-circle"></i><span>Shop</span>
+        </router-link>
+        <router-link to="/cart" class="button is-primary">
+          <i class="fa fa-shopping-cart"></i><span>{{ cartQuantity }}</span>
+        </router-link>
+      </div>
+    </div>
     <div class="container">
       <div class="columns">
-        <router-view></router-view>
+        <div class="column is-6 column--align-center">
+          <router-view></router-view>
+        </div>
       </div>
     </div>
   </div>
@@ -11,10 +23,6 @@
 <script>
 export default {
   name: "App",
-  components: {
-    CartList,
-    ProductList,
-  },
 };
 </script>
 
