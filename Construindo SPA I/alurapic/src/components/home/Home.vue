@@ -1,30 +1,41 @@
-
 <template>
-  <div>
-    <h1 class="centralizado">{{ titulo }}</h1>
-
-    <input class="filtro" type="search" v-on:input="filtro = $event.target.value" placeholder="Filtre por parte do título">
-
-    <ul class="lista-fotos">
-      <li class="lista-fotos-item" v-for="(foto) in fotosComFiltro" :key="foto.id">
-        <meu-painel :titulo="foto.titulo">
-          <imagem-responsiva :url="foto.url" :titulo="foto.titulo"></imagem-responsiva>
-        </meu-painel>
-      </li>
-    </ul>
-
-  </div>
+    <div>    
+        <h1 class="titulo">Alurapic</h1>
+        <input type="search" class="filtro" @input="filtro = $event.target.value" placeholder="filtre pelo título da foto">
+        <ul class="lista-fotos">
+          <li class="lista-fotos-item" v-for="foto in fotosComFiltro">
+              <meu-painel :titulo="foto.titulo">
+                <imagem-responsiva v-meu-transform:rotate.animate="90" :url="foto.url" :titulo="foto.titulo"/>
+                <meu-botao 
+                  rotulo="remover" 
+                  tipo="button" 
+                  :confirmacao="true" 
+                  @botaoAtivado="remove(foto)"
+                  estilo="padrao"/>
+              </meu-painel>
+          </li>
+        </ul>
+    </div>
 </template>
 
 <script>
+
 import Painel from '../shared/painel/Painel.vue';
-import ImagemResponsiva from '../shared/imagem-responsiva/ImagemResponsiva.vue';
+import ImagemResponsiva from '../shared/imagem-responsiva/ImagemResponsiva.vue'
+import Botao from '../shared/botao/Botao.vue';
+
+import Transform from '../../directives/Transform.js'
 
 export default {
 
   components: {
     'meu-painel': Painel,
-    'imagem-responsiva': ImagemResponsiva
+    'imagem-responsiva': ImagemResponsiva,
+    'meu-botao': Botao
+  },
+
+  directives:{
+    'meu-transform' : Transform
   },
 
   data(){
@@ -44,6 +55,13 @@ export default {
         return this.fotos;
       }
     }
+  },
+
+  methods:{
+    remove(foto){
+        alert('Remover a foto' + foto.titulo)
+    }
+
   },
 
   created(){

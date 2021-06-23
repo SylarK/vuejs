@@ -61,7 +61,9 @@ export default {
     transition: opacity .6s;
   }
 
-
+  .painel-conteudo{
+    overflow: hidden;
+  }
 
 
 
