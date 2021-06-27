@@ -13,4 +13,5 @@ export default {
   .imagem-responsiva {
     width: 100%;
   }
+  
 </style>
